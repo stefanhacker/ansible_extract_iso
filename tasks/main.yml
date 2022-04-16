@@ -1,0 +1,31 @@
+---
+- name: install 7zip
+  package:
+   name: p7zip-full
+   state: present
+
+
+- name: Debug shows is overwrite undefined
+  debug:
+    msg: "Error!!!: overwrite is undefined"
+  when: overwrite is undefined
+
+- name: extract iso with extract files/folder list is given
+  raw: "7z {{ fullpath_paremeter }} '{{ path_to_iso }}' '-o{{ path_to_extract_dest }}' {{ overwrite }} '{{ item }}' -r"
+  with_items: "{{ extract_folder_and_files_from_iso }}"
+  when: (extract_folder_and_files_from_iso is defined) and (extract_folder_and_files_from_iso|length > 0)
+
+
+- name: Debug shows isextract_folder_and_files_from_iso
+  debug:
+    msg: "Content: {{ extract_folder_and_files_from_iso }}"
+  when: (extract_folder_and_files_from_iso is defined) and (extract_folder_and_files_from_iso|length > 0)
+
+- name: extract full iso
+  raw: "7z {{ fullpath_paremeter }} '{{ path_to_iso }}' '-o{{ path_to_extract_dest }}' {{ overwrite }}"
+  when: (extract_folder_and_files_from_iso is not defined) or (extract_folder_and_files_from_iso|length == 0)
+
+
+- name: chmod 777 the iso folder
+  raw: "chmod -R 777 '{{ path_to_extract_dest }}'"
+  when: (extract_folder_and_files_from_iso is not defined) or (extract_folder_and_files_from_iso|length == 0)

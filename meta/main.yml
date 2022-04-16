@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Stefan Hacker
+  description: Extract file folders or complete iso to an folder
+  company: Hacker-Net Telekommuniaktion
+
+  license: MIT License
+
+  min_ansible_version: 2.6.4
+
+  platforms:
+    - name: GenericLinux
+      versions:
+        - all
+    
+
+  galaxy_tags:
+    - hackernet
+    - iso
+    - livecd
+    - exctracted
+    - extract
+    - unzip
