@@ -1,4 +1,4 @@
-An ansible role to exctract an folder. The Inbuilt iso function dont extract an folder
+An ansible role to exctract an folder. The inbuild iso function dont extract an folder
 
 
 
