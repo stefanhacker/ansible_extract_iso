@@ -10,6 +10,16 @@
     msg: "Error!!!: overwrite is undefined"
   when: overwrite is undefined
 
+- name: Debug shows is overwrite undefined
+  debug:
+    msg: "Overwrite: {{ overwrite }}"
+  when: overwrite is defined
+
+- name: Debug shows is overwrite undefined
+  debug:
+    msg: "path_to_iso :  {{ path_to_iso }}"
+  when: path_to_iso is defined
+
 - name: extract iso with extract files/folder list is given
   raw: "7z {{ fullpath_paremeter }} '{{ path_to_iso }}' '-o{{ path_to_extract_dest }}' {{ overwrite }} '{{ item }}' -r"
   with_items: "{{ extract_folder_and_files_from_iso }}"
