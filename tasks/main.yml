@@ -26,14 +26,14 @@
   when: (extract_folder_and_files_from_iso is defined) and (extract_folder_and_files_from_iso|length > 0)
 
 
-- name: Debug shows isextract_folder_and_files_from_iso
+- name: Debug shows is extract_folder_and_files_from_iso
   debug:
     msg: "Content: {{ extract_folder_and_files_from_iso }}"
   when: (extract_folder_and_files_from_iso is defined) and (extract_folder_and_files_from_iso|length > 0)
 
 - name: extract full iso
   raw: "7z {{ fullpath_paremeter }} '{{ path_to_iso }}' '-o{{ path_to_extract_dest }}' {{ overwrite }}"
-  when: (extract_folder_and_files_from_iso is not defined) or (extract_folder_and_files_from_iso|length == 0)
+  when: (extract_folder_and_files_from_iso is defined) or (extract_folder_and_files_from_iso|length == 0)
 
 
 - name: chmod 777 the iso folder
