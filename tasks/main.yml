@@ -15,7 +15,7 @@
     msg: "Overwrite: {{ overwrite }}"
   when: overwrite is defined
 
-- name: Debug shows is overwrite undefined
+- name: Debug shows is path_to_iso
   debug:
     msg: "path_to_iso :  {{ path_to_iso }}"
   when: path_to_iso is defined
@@ -33,9 +33,9 @@
 
 - name: extract full iso
   raw: "7z {{ fullpath_paremeter }} '{{ path_to_iso }}' '-o{{ path_to_extract_dest }}' {{ overwrite }}"
-  when: (extract_folder_and_files_from_iso is defined) or (extract_folder_and_files_from_iso|length == 0)
+  when: (extract_folder_and_files_from_iso is undefined) or (extract_folder_and_files_from_iso|length == 0)
 
 
 - name: chmod 777 the iso folder
   raw: "chmod -R 777 '{{ path_to_extract_dest }}'"
-  when: (extract_folder_and_files_from_iso is not defined) or (extract_folder_and_files_from_iso|length == 0)
+  when: (extract_folder_and_files_from_iso is undefined) or (extract_folder_and_files_from_iso|length == 0)
